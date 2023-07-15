@@ -21,6 +21,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import com.example.sports.ui.SportsApp
 import com.example.sports.ui.theme.SportsTheme
 
@@ -31,11 +33,11 @@ import com.example.sports.ui.theme.SportsTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             SportsTheme {
                 Surface {
-                    SportsApp()
+                    val windowSize = calculateWindowSizeClass(activity = this)
+                    SportsApp(windowWidthSize = windowSize.widthSizeClass)
                 }
             }
         }
